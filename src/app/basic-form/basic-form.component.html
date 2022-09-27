@@ -1,0 +1,74 @@
+<div class="container p-5">
+  <div class="card">
+    <div class="card-header">
+      <h1>{{ title }}</h1>
+    </div>
+
+    <div class="card-body">
+      <!--<form [formGroup]="basicForm" (ngSubmit)="onSubmit()">-->
+        <form [formGroup]="basicForm">
+        <!-- NAME -->
+        <div class="row mb-2">
+          <label for="name" class="col-3 col-form-label">Name </label>
+          <div class="col-8">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="name"
+              placeholder="Name"
+            />
+          </div>
+        </div>
+
+        <!-- AGE -->
+        <div class="row mb-2">
+          <label for="age" class="col-3 col-form-label">Age </label>
+          <div class="col-8">
+            <input
+              type="text"
+              class="form-control"
+              id="age"
+              formControlName="age"
+              placeholder="0"
+            />
+          </div>
+        </div>
+
+        <!-- Height -->
+        <div class="row mb-2">
+          <label for="height" class="col-3 col-form-label">Height </label>
+          <div class="col-8">
+            <input
+              type="text"
+              class="form-control"
+              id="height"
+              formControlName="height"
+              placeholder="0"
+            />
+          </div>
+        </div>
+
+        <!-- Weight -->
+        <div class="row mb-2">
+          <label for="age" class="col-3 col-form-label">Weight </label>
+          <div class="col-8">
+            <input
+              type="text"
+              class="form-control"
+              id="weight"
+              formControlName="weight"
+              placeholder="0"
+            />
+          </div>
+        </div>
+
+        <!--Button-->
+        <div class="col-md-3 tp-container2">
+          <button type="submit" class="btn btn-primary" (click)="onSubmit()">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
