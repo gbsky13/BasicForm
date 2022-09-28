@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -20,17 +20,22 @@ export class BasicFormComponent {
 
   initForm() {
     this.basicForm = this.fb.group({
-      name: [''],
-      age: [],
-      weight: [],
-      height: [],
+      name: ['', Validators.required],
+      age: [null, Validators.required],
+      weight: [null, Validators.required],
+      height: [null, Validators.required],
     });
   }
 
   onSubmit() {
-    //console.log('Console: submitted with value: ', this.basicForm.value);
-    const submittedVal = this.basicForm.value;
-    console.log('submitted = ', submittedVal);
-    this.toastr.success('Successfully submitted data', 'Success');
+    if (this.basicForm.valid) {
+      const submittedVal = this.basicForm.value;
+      console.log('submitted = ', submittedVal);
+      this.toastr.success('Successfully submitted data', 'Success');
+
+      this.basicForm.reset();
+    } else {
+      this.toastr.error('Please check again', 'Error');
+    }
   }
 }
