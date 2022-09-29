@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 export class BasicFormComponent implements OnInit {
   title = 'XXX Class Registration Form';
   basicForm: FormGroup;
-  validSubmit: Boolean;
+  resultbmi: Number;
 
   constructor(private fb: FormBuilder, private toastr: ToastrService) {}
 
@@ -29,25 +29,26 @@ export class BasicFormComponent implements OnInit {
       weight: ['', Validators.required],
       height: ['', Validators.required],
       cvaccine: ['', Validators.required],
-      // classLevel: ['', Validators.required],
-      // session: ['', Validators.required],
     });
-  }
-
-  onChangeSession(value: string) {
-    console.log(value);
   }
 
   onSubmit() {
     if (this.basicForm.valid) {
-      console.log('success submit: ', this.basicForm.value);
       this.toastr.success('Successfully submitted', 'Success');
-
-      this.validSubmit = true;
+      const submittedData = this.basicForm.value;
       this.basicForm.reset();
     } else {
       console.log('error submit: ', this.basicForm.value);
       this.toastr.error('Please check again', 'Error');
     }
+  }
+
+  computebmi() {
+    const weightVal = this.basicForm.controls.weight.value;
+    const heightVal = this.basicForm.controls.height.value;
+
+    var bmi = weightVal / (heightVal * heightVal);
+    this.resultbmi = Number(bmi.toFixed(3));
+    console.log(' resultbmi: ', this.resultbmi);
   }
 }

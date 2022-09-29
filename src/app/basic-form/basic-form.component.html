@@ -99,27 +99,37 @@
 
         <!-- Weight -->
         <div class="row mb-2">
-          <label for="weight" class="col-4 col-form-label">Weight:</label>
+          <label for="weight" class="col-4 col-form-label">Weight (kg):</label>
           <div class="col-8">
             <input
-              type="weight"
+              type="text"
               class="form-control"
               formControlName="weight"
               placeholder="0"
+              (change)="computebmi()"
             />
           </div>
         </div>
 
         <!-- Height -->
         <div class="row mb-2">
-          <label for="height" class="col-4 col-form-label">Height:</label>
+          <label for="height" class="col-4 col-form-label">Height (m):</label>
           <div class="col-8">
             <input
-              type="height"
+              type="text"
               class="form-control"
               formControlName="height"
               placeholder="0"
+              (change)="computebmi()"
             />
+          </div>
+        </div>
+
+        <!-- BMI -->
+        <div class="row mb-2">
+          <label for="resultbmi" class="col-4 col-form-label">BMI:</label>
+          <div class="col-8 text-secondary">
+            {{ resultbmi }}
           </div>
         </div>
 
