@@ -81,6 +81,15 @@
               formControlName="phone"
               placeholder="01234567890"
             />
+            <div
+              *ngIf="
+                basicForm.controls.phone.touched &&
+                basicForm.controls.phone.invalid
+              "
+              class="alert alert-danger p-0 mb-2 text-center"
+            >
+              Please enter a valid phone number.
+            </div>
           </div>
         </div>
 
@@ -94,6 +103,15 @@
               formControlName="email"
               placeholder="abc@def.com"
             />
+            <div
+              *ngIf="
+                basicForm.controls.email.touched &&
+                basicForm.controls.email.invalid
+              "
+              class="alert alert-danger p-0 mb-2 text-center"
+            >
+              Please enter a valid email.
+            </div>
           </div>
         </div>
 
@@ -102,7 +120,7 @@
           <label for="weight" class="col-4 col-form-label">Weight (kg):</label>
           <div class="col-8">
             <input
-              type="text"
+              type="number"
               class="form-control"
               formControlName="weight"
               placeholder="0"
@@ -116,7 +134,7 @@
           <label for="height" class="col-4 col-form-label">Height (m):</label>
           <div class="col-8">
             <input
-              type="text"
+              type="number"
               class="form-control"
               formControlName="height"
               placeholder="0"
