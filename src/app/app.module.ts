@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       timeOut: 10000,
       progressBar: true,
       progressAnimation: 'increasing',
+      positionClass: 'toast-bottom-right',
     }),
     BrowserAnimationsModule,
   ],
