@@ -29,7 +29,7 @@ export class BasicFormComponent implements OnInit {
   initForm() {
     this.basicForm = this.fb.group({
       firstName: [null, Validators.required],
-      lastName: [null, Validators.required],
+      lastName: [null],
       gender: [null, Validators.required],
       birthday: [null, Validators.required],
       phone: [
@@ -56,6 +56,14 @@ export class BasicFormComponent implements OnInit {
       console.log('error submit: ', this.basicForm.value);
       this.toastr.error('Please check again', 'Error');
     }
+  }
+
+  onEnable(){
+    this.basicForm.enable();
+  }
+
+  onDisable(){
+    this.basicForm.disable();
   }
 
   computebmi() {
