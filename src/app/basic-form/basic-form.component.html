@@ -8,7 +8,7 @@
       <form [formGroup]="basicForm">
         <!-- First Name -->
         <div class="row mb-2">
-          <label for="firstName" class="col-4 col-form-label"
+          <label for="firstName" class="col-4 col-form-label required"
             >First Name:</label
           >
           <div class="col-8">
@@ -36,7 +36,9 @@
 
         <!-- Gender -->
         <div class="row mb-2">
-          <label for="gender" class="col-4 col-form-label"> Gender: </label>
+          <label for="gender" class="col-4 col-form-label required">
+            Gender:
+          </label>
           <div class="col-8">
             <div class="form-check">
               <input
@@ -61,7 +63,9 @@
 
         <!-- Birthday -->
         <div class="row mb-2">
-          <label for="birthday" class="col-4 col-form-label"> Birthday: </label>
+          <label for="birthday" class="col-4 col-form-label required">
+            Birthday:
+          </label>
           <div class="col-8">
             <input
               type="date"
@@ -73,7 +77,9 @@
 
         <!-- Phone number -->
         <div class="row mb-2">
-          <label for="phone" class="col-4 col-form-label">Phone Number:</label>
+          <label for="phone" class="col-4 col-form-label required"
+            >Phone Number:</label
+          >
           <div class="col-8">
             <input
               type="text"
@@ -95,7 +101,9 @@
 
         <!-- Email -->
         <div class="row mb-2">
-          <label for="email" class="col-4 col-form-label">Email:</label>
+          <label for="email" class="col-4 col-form-label required"
+            >Email:</label
+          >
           <div class="col-8">
             <input
               type="email"
@@ -117,7 +125,9 @@
 
         <!-- Weight -->
         <div class="row mb-2">
-          <label for="weight" class="col-4 col-form-label">Weight (kg):</label>
+          <label for="weight" class="col-4 col-form-label required"
+            >Weight (kg):</label
+          >
           <div class="col-8">
             <input
               type="number"
@@ -131,7 +141,9 @@
 
         <!-- Height -->
         <div class="row mb-2">
-          <label for="height" class="col-4 col-form-label">Height (m):</label>
+          <label for="height" class="col-4 col-form-label required"
+            >Height (m):</label
+          >
           <div class="col-8">
             <input
               type="number"
@@ -153,7 +165,7 @@
 
         <!-- Vaccine -->
         <div class="row mb-2">
-          <label for="cvaccine" class="col-4 col-form-label"
+          <label for="cvaccine" class="col-4 col-form-label required"
             >Received Covid Vaccine:</label
           >
           <div class="col-8">
@@ -202,10 +214,29 @@
       </div>-->
 
         <!-- Button -->
-        <div class="col-md-3">
-          <button type="submit" class="btn btn-primary" (click)="onSubmit()">
-            Submit
-          </button>
+        <div class="row mb-2">
+          <div class="col-md-9">
+            <button type="submit" class="btn btn-success" (click)="onSubmit()">
+              Submit
+            </button>
+          </div>
+
+          <div class="col-md-3">
+            <button
+              type="submit"
+              class="btn btn-warning m-1"
+              (click)="onDisable()"
+            >
+              View
+            </button>
+            <button
+              type="edit"
+              class="btn btn-primary m-1"
+              (click)="onEnable()"
+            >
+              Edit
+            </button>
+          </div>
         </div>
       </form>
     </div>
