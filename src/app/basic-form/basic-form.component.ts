@@ -18,7 +18,6 @@ import { BasicFormModel } from './basicForm.model';
 export class BasicFormComponent implements OnInit {
   title = 'XXX Class Registration Form';
   basicForm: UntypedFormGroup;
-
   basicTypedForm: FormGroup<BasicTypedFormModel>;
 
   emailPattern = new RegExp(
@@ -28,7 +27,7 @@ export class BasicFormComponent implements OnInit {
     /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/
   );
 
-  resultbmi: Number;
+  resultbmi: number;
 
   constructor(private fb: FormBuilder, private toastr: ToastrService) {}
 
@@ -71,8 +70,8 @@ export class BasicFormComponent implements OnInit {
         Validators.required,
         Validators.pattern(this.emailPattern),
       ]),
-      weight: new FormControl(null, Validators.required),
-      height: new FormControl(null, Validators.required),
+      weight: new FormControl(0, Validators.required),
+      height: new FormControl(0, Validators.required),
       cvaccine: new FormControl('', Validators.required),
     });
   }
@@ -107,12 +106,25 @@ export class BasicFormComponent implements OnInit {
     this.resultbmi = 0;
   }
 
-  computebmi() {
-    const weightVal = this.basicForm.controls.weight.value;
-    const heightVal = this.basicForm.controls.height.value;
+  //compute bmi for untypedform done
+  // computebmi() {
+  //
+  //   const weightVal = this.basicForm.controls.weight.value;
+  //   const heightVal = this.basicForm.controls.height.value;
 
-    var bmi = weightVal / (heightVal * heightVal);
+  //   var bmi = weightVal / (heightVal * heightVal);
+  //   this.resultbmi = Number(bmi.toFixed(3));
+  //   console.log('result bmi : ', this.resultbmi);
+  // }
+
+  //compute bmi for typedform ada error huk huk ==>  refer https://bobbyhadz.com/blog/typescript-left-hand-side-of-arithmetic-operation-must-be-type
+  computebmi() {
+    const weightVal = this.basicTypedForm.controls.weight.value;
+    const heightVal = this.basicTypedForm.controls.height.value;
+    console.log(weightVal, heightVal);
+
+    var bmi = Number(weightVal) / (Number(heightVal) * Number(heightVal));
     this.resultbmi = Number(bmi.toFixed(3));
-    console.log(' resultbmi: ', this.resultbmi);
+    console.log('result bmi : ', this.resultbmi);
   }
 }
