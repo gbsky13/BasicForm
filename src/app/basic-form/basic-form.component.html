@@ -248,7 +248,15 @@
       </form>
     </div>
     <!--end of card body-->
-    <div class="card-footer">Your BMI: {{ resultbmi }}<br /></div>
+    <div class="card-footer">
+      Your BMI: {{ resultbmi }}
+      <br />
+      <app-basic-form-child
+        *ngIf="psubmittedData"
+        [csubmittedData]="psubmittedData"
+      >
+      </app-basic-form-child>
+    </div>
     <!--end of card body-->
   </div>
   <!--end of card -->

@@ -28,6 +28,7 @@ export class BasicFormComponent implements OnInit {
   );
 
   resultbmi: number;
+  psubmittedData: any;
 
   constructor(private fb: FormBuilder, private toastr: ToastrService) {}
 
@@ -83,6 +84,7 @@ export class BasicFormComponent implements OnInit {
       // const submittedData: BasicFormModel = this.basicForm.value;
       // console.log('success Submit with: ', submittedData);
       console.log('success submit with: ', this.basicTypedForm.value);
+      this.psubmittedData = this.basicTypedForm.value;
       this.onReset();
     } else {
       console.log('error submit with value: ', this.basicTypedForm.value);
