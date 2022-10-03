@@ -7,7 +7,6 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './basic-form.component.html',
   styleUrls: ['./basic-form.component.css'],
 })
-
 export class BasicFormComponent implements OnInit {
   title = 'XXX Class Registration Form';
   basicForm: FormGroup;
@@ -51,19 +50,24 @@ export class BasicFormComponent implements OnInit {
       this.toastr.success('Successfully submitted', 'Success');
       const submittedData = this.basicForm.value;
       console.log('success Submit with: ', submittedData);
-      this.basicForm.reset();
+      this.onReset();
     } else {
       console.log('error submit: ', this.basicForm.value);
       this.toastr.error('Please check again', 'Error');
     }
   }
 
-  onEnable(){
+  onEnable() {
     this.basicForm.enable();
   }
 
-  onDisable(){
+  onDisable() {
     this.basicForm.disable();
+  }
+
+  onReset() {
+    this.basicForm.reset();
+    this.resultbmi = 0;
   }
 
   computebmi() {
