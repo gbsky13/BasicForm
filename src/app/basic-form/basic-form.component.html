@@ -5,7 +5,6 @@
     </div>
 
     <div class="card-body">
-      <!-- <form [formGroup]="basicForm"> -->
       <form [formGroup]="basicTypedForm">
         <!-- First Name -->
         <div class="row mb-2">
@@ -90,8 +89,8 @@
             />
             <div
               *ngIf="
-                basicForm.controls.phone.touched &&
-                basicForm.controls.phone.invalid
+                basicTypedForm.controls.phone.touched &&
+                basicTypedForm.controls.phone.invalid
               "
               class="alert alert-danger p-0 mb-2 text-center"
             >
@@ -114,8 +113,8 @@
             />
             <div
               *ngIf="
-                basicForm.controls.email.touched &&
-                basicForm.controls.email.invalid
+                basicTypedForm.controls.email.touched &&
+                basicTypedForm.controls.email.invalid
               "
               class="alert alert-danger p-0 mb-2 text-center"
             >
