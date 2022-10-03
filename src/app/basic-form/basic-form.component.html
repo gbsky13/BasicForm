@@ -34,6 +34,19 @@
           </div>
         </div>
 
+        <!-- Concate Name -->
+        <div class="row mb-2">
+          <label for="Name" class="col-4 col-form-label">Name:</label>
+          <div class="col-8">
+            <input
+              type="text"
+              class="form-control"
+              [value]="concateName"
+              placeholder="Name"
+            />
+          </div>
+        </div>
+
         <!-- Gender -->
         <div class="row mb-2">
           <label for="gender" class="col-4 col-form-label required">
@@ -254,7 +267,11 @@
       <app-basic-form-child
         *ngIf="psubmittedData"
         [csubmittedData]="psubmittedData"
+        (fromChildEmitter$)="concateName = $event"
       >
+        <!-- (fromChildEmitter$)="anyfuntion($event)"
+      [] from parent to child
+      () from child to parent -->
       </app-basic-form-child>
     </div>
     <!--end of card body-->

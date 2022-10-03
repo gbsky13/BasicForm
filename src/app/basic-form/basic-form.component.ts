@@ -30,6 +30,8 @@ export class BasicFormComponent implements OnInit {
   resultbmi: number;
   psubmittedData: any;
 
+  concateName?: String;
+
   constructor(private fb: FormBuilder, private toastr: ToastrService) {}
 
   ngOnInit() {
