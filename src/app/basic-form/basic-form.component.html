@@ -5,7 +5,8 @@
     </div>
 
     <div class="card-body">
-      <form [formGroup]="basicForm">
+      <!-- <form [formGroup]="basicForm"> -->
+      <form [formGroup]="basicTypedForm">
         <!-- First Name -->
         <div class="row mb-2">
           <label for="firstName" class="col-4 col-form-label required"
@@ -156,12 +157,12 @@
         </div>
 
         <!-- BMI -->
-        <div class="row mb-2">
+        <!-- <div class="row mb-2">
           <label for="resultbmi" class="col-4 col-form-label">BMI:</label>
           <div class="col-8 text-secondary">
             {{ resultbmi }}
           </div>
-        </div>
+        </div> -->
 
         <!-- Vaccine -->
         <div class="row mb-2">
@@ -215,31 +216,41 @@
 
         <!-- Button -->
         <div class="row mb-2">
-          <div class="col-md-9">
+          <div class="col-md-8">
             <button type="submit" class="btn btn-success" (click)="onSubmit()">
               Submit
             </button>
           </div>
 
-          <div class="col-md-3">
+          <div class="col-md-4">
             <button
-              type="submit"
-              class="btn btn-warning m-1"
+              type="button"
+              class="btn btn-warning m-1 float-right"
               (click)="onDisable()"
             >
               View
             </button>
             <button
-              type="edit"
-              class="btn btn-primary m-1"
+              type="button"
+              class="btn btn-primary m-1 float-right"
               (click)="onEnable()"
             >
               Edit
+            </button>
+            <button
+              type="reset"
+              class="btn btn-danger m-1 float-right"
+              (click)="onReset()"
+            >
+              Reset
             </button>
           </div>
         </div>
       </form>
     </div>
     <!--end of card body-->
+    <div class="card-footer">Your BMI: {{ resultbmi }}<br /></div>
+    <!--end of card body-->
   </div>
+  <!--end of card -->
 </div>

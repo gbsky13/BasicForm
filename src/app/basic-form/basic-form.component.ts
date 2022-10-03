@@ -1,16 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { BasicTypedFormModel } from './basicForm.config';
+import { BasicFormModel } from './basicForm.model';
 
 @Component({
   selector: 'app-basic-form',
   templateUrl: './basic-form.component.html',
   styleUrls: ['./basic-form.component.css'],
 })
-
 export class BasicFormComponent implements OnInit {
   title = 'XXX Class Registration Form';
-  basicForm: FormGroup;
+  basicForm: UntypedFormGroup;
+
+  basicTypedForm: FormGroup<BasicTypedFormModel>;
+
   emailPattern = new RegExp(
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   );
@@ -24,6 +34,7 @@ export class BasicFormComponent implements OnInit {
 
   ngOnInit() {
     this.initForm();
+    this.initTypedForm();
   }
 
   initForm() {
@@ -46,24 +57,54 @@ export class BasicFormComponent implements OnInit {
     });
   }
 
+  initTypedForm() {
+    this.basicTypedForm = new FormGroup<BasicTypedFormModel>({
+      firstName: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
+      gender: new FormControl('', Validators.required),
+      birthday: new FormControl(null, Validators.required),
+      phone: new FormControl('', [
+        Validators.required,
+        Validators.pattern(this.phoneNumberPattern),
+      ]),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern(this.emailPattern),
+      ]),
+      weight: new FormControl(null, Validators.required),
+      height: new FormControl(null, Validators.required),
+      cvaccine: new FormControl('', Validators.required),
+    });
+  }
+
   onSubmit() {
     if (this.basicForm.valid) {
       this.toastr.success('Successfully submitted', 'Success');
-      const submittedData = this.basicForm.value;
+      const submittedData: BasicFormModel = this.basicForm.value;
       console.log('success Submit with: ', submittedData);
-      this.basicForm.reset();
+      this.onReset();
     } else {
       console.log('error submit: ', this.basicForm.value);
       this.toastr.error('Please check again', 'Error');
     }
+
+    console.log(
+      'basicTypedForm.controls.birthday: ',
+      this.basicTypedForm.controls.birthday
+    );
   }
 
-  onEnable(){
+  onEnable() {
     this.basicForm.enable();
   }
 
-  onDisable(){
+  onDisable() {
     this.basicForm.disable();
+  }
+
+  onReset() {
+    this.basicForm.reset();
+    this.resultbmi = 0;
   }
 
   computebmi() {
