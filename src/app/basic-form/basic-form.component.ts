@@ -123,7 +123,7 @@ export class BasicFormComponent implements OnInit {
     const heightVal = this.basicTypedForm.controls.height.value;
     console.log(weightVal, heightVal);
 
-    let bmi = Number(weightVal) / (Number(heightVal) * Number(heightVal));
+    var bmi = Number(weightVal) / (Number(heightVal) * Number(heightVal));
     this.resultbmi = Number(bmi.toFixed(3));
     console.log('result bmi : ', this.resultbmi);
   }
