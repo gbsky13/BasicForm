@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { BasicTypedFormModel } from './basicForm.config';
+import { BasicTypedFormModel } from './basicTypedform.config';
 import { BasicFormModel } from './basicForm.model';
 
 @Component({
@@ -32,7 +32,7 @@ export class BasicFormComponent implements OnInit {
   constructor(private fb: FormBuilder, private toastr: ToastrService) {}
 
   ngOnInit() {
-    this.initForm();
+    // this.initForm();
     this.initTypedForm();
   }
 
@@ -69,6 +69,7 @@ export class BasicFormComponent implements OnInit {
       email: new FormControl('', [
         Validators.required,
         Validators.pattern(this.emailPattern),
+        Validators.email,
       ]),
       weight: new FormControl(0, Validators.required),
       height: new FormControl(0, Validators.required),
@@ -77,32 +78,36 @@ export class BasicFormComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.basicForm.valid) {
+    if (this.basicTypedForm.valid) {
       this.toastr.success('Successfully submitted', 'Success');
-      const submittedData: BasicFormModel = this.basicForm.value;
-      console.log('success Submit with: ', submittedData);
+      // const submittedData: BasicFormModel = this.basicForm.value;
+      // console.log('success Submit with: ', submittedData);
+      console.log('success submit with: ', this.basicTypedForm.value);
       this.onReset();
     } else {
-      console.log('error submit: ', this.basicForm.value);
+      console.log('error submit with value: ', this.basicTypedForm.value);
       this.toastr.error('Please check again', 'Error');
     }
 
-    console.log(
-      'basicTypedForm.controls.birthday: ',
-      this.basicTypedForm.controls.birthday
-    );
+    // console.log(
+    //   'basicTypedForm.controls.birthday: ',
+    //   this.basicTypedForm.controls.birthday
+    // );
   }
 
   onEnable() {
-    this.basicForm.enable();
+    // this.basicForm.enable();
+    this.basicTypedForm.enable();
   }
 
   onDisable() {
-    this.basicForm.disable();
+    // this.basicForm.disable();
+    this.basicTypedForm.disable();
   }
 
   onReset() {
-    this.basicForm.reset();
+    // this.basicForm.reset();
+    this.basicTypedForm.reset();
     this.resultbmi = 0;
   }
 
@@ -117,7 +122,7 @@ export class BasicFormComponent implements OnInit {
   //   console.log('result bmi : ', this.resultbmi);
   // }
 
-  //compute bmi for typedform ada error huk huk ==>  refer https://bobbyhadz.com/blog/typescript-left-hand-side-of-arithmetic-operation-must-be-type
+  //compute bmi for typedform ==>  refer https://bobbyhadz.com/blog/typescript-left-hand-side-of-arithmetic-operation-must-be-type
   computebmi() {
     const weightVal = this.basicTypedForm.controls.weight.value;
     const heightVal = this.basicTypedForm.controls.height.value;
