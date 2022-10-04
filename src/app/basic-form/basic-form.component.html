@@ -274,11 +274,13 @@
       <app-basic-form-child
         *ngIf="psubmittedData"
         [csubmittedData]="psubmittedData"
+        [bmiForm]="basicTypedForm"
         [resetAllData]="resetAllData"
         (fromChildEmitter$)="concateName = $event"
         (fromChildEmitter2$)="age = $event"
-        (fromChildEmitter3$)="bmi = $event"
+        (fromBMIModelEmitter$)="bmical($event)"
       >
+        <!-- (fromChildEmitter3$)="bmi = $event" -->
         <!-- (fromChildEmitter$)="anyfuntion($event)"
       [] from parent to child
       () from child to parent -->

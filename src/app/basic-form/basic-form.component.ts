@@ -85,7 +85,6 @@ export class BasicFormComponent implements OnInit {
 
   onSubmit() {
     this.resetAllData = false;
-
     if (this.basicTypedForm.valid) {
       this.toastr.success('Successfully submitted', 'Success');
       // const submittedData: BasicFormModel = this.basicForm.value;
@@ -102,6 +101,7 @@ export class BasicFormComponent implements OnInit {
     //   this.basicTypedForm.controls.birthday
     // );
     // console.log(typeof this.basicTypedForm.controls.birthday)
+    console.log('nana', typeof this.bmi);
   }
 
   onEnable() {
@@ -126,6 +126,10 @@ export class BasicFormComponent implements OnInit {
     this.age = 0;
     this.bmi = 0;
     this.resetAllData = true;
+  }
+
+  bmical(event) {
+    console.log('pass from child: ', event);
   }
 
   //compute bmi for untypedform

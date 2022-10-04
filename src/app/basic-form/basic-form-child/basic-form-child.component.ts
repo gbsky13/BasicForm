@@ -7,6 +7,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { BasicFormModel } from '../basicForm.model';
 
 @Component({
@@ -16,14 +17,22 @@ import { BasicFormModel } from '../basicForm.model';
 })
 export class BasicFormChildComponent implements OnInit, OnChanges {
   @Input() csubmittedData;
+  @Input() bmiForm: FormGroup;
   @Input() resetAllData;
   @Output() fromChildEmitter$ = new EventEmitter<String>(); //emitter=obsevable
   @Output() fromChildEmitter2$ = new EventEmitter<Number>();
   @Output() fromChildEmitter3$ = new EventEmitter<Number>();
+  @Output() fromBMIModelEmitter$ = new EventEmitter<BMIModel>();
+  // @Output() fromChildEmitter3$ = new EventEmitter<{
+  //   bmi: number;
+  //   statusbmi: string;
+  // }>();
 
   constructor() {}
+
   ngOnChanges(changes: SimpleChanges): void {
     const change = changes['csubmittedData'];
+    console.log(change);
     if (change && change.currentValue) {
       this.concateName();
       this.computeAge();
@@ -32,7 +41,16 @@ export class BasicFormChildComponent implements OnInit, OnChanges {
   }
 
   title = 'Hello from child';
-  ngOnInit() {}
+  ngOnInit() {
+    // declare
+    const weight = this.bmiForm.controls.weight;
+    const height = this.bmiForm.controls.height;
+
+    weight.valueChanges.subscribe(() => {
+      this.computeBMI();
+      // console.log(this)
+    });
+  }
 
   concateName() {
     const newName =
@@ -48,13 +66,48 @@ export class BasicFormChildComponent implements OnInit, OnChanges {
     this.fromChildEmitter2$.emit(age);
   }
 
-  //compute bmi for typedform ==>  refer https://bobbyhadz.com/blog/typescript-left-hand-side-of-arithmetic-operation-must-be-type
+  // compute bmi for typedform ==>  refer https://bobbyhadz.com/blog/typescript-left-hand-side-of-arithmetic-operation-must-be-type
+  // computeBMI() {
+  //   const weightVal = this.csubmittedData.weight;
+  //   const heightVal = this.csubmittedData.height;
+  //   console.log(weightVal, heightVal);
+
+  //   var bmi = Number(weightVal) / (Number(heightVal) * Number(heightVal));
+  //   this.fromChildEmitter3$.emit(bmi);
+  // }
+
   computeBMI() {
+    console.log(this.csubmittedData);
+    let bmiModel: BMIModel;
     const weightVal = this.csubmittedData.weight;
     const heightVal = this.csubmittedData.height;
-    console.log(weightVal, heightVal);
 
     var bmi = Number(weightVal) / (Number(heightVal) * Number(heightVal));
-    this.fromChildEmitter3$.emit(bmi);
+
+    let statusbmi = '';
+
+    if (bmi < 0) {
+      statusbmi = 'Not Normal Maybe You Alien';
+    } else if (bmi > 0 && bmi <= 18.5) {
+      statusbmi = 'Underweight';
+    } else if (bmi > 18.5 && bmi <= 24.9) {
+      statusbmi = 'Healthy';
+    } else if (bmi > 24.9 && bmi <= 29.9) {
+      statusbmi = 'Overweight';
+    } else {
+      statusbmi = 'Obesity';
+    }
+    bmiModel = {
+      bmi: bmi,
+      statusBmi: statusbmi,
+    };
+    // this.fromChildEmitter3$.emit({bmi, statusbmi});
+    this.fromBMIModelEmitter$.emit(bmiModel);
+    console.log('bmi:', bmiModel);
   }
+}
+
+export interface BMIModel {
+  bmi: number;
+  statusBmi: string;
 }
