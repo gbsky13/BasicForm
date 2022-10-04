@@ -27,22 +27,25 @@ export class BasicFormComponent implements OnInit {
     /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/
   );
 
-  resultbmi: number;
+  // resultbmi: number;
   psubmittedData: any;
-
+  resetAllData: Boolean;
   concateName?: String;
+  age?: Number;
+  bmi?: Number;
 
   constructor(private fb: FormBuilder, private toastr: ToastrService) {}
 
   ngOnInit() {
     // this.initForm();
     this.initTypedForm();
+    this.resetAllData = false;
   }
 
   initForm() {
     this.basicForm = this.fb.group({
       firstName: [null, Validators.required],
-      lastName: [null],
+      lastName: [null, Validators.required],
       gender: [null, Validators.required],
       birthday: [null, Validators.required],
       phone: [
@@ -81,13 +84,14 @@ export class BasicFormComponent implements OnInit {
   }
 
   onSubmit() {
+    this.resetAllData = false;
+
     if (this.basicTypedForm.valid) {
       this.toastr.success('Successfully submitted', 'Success');
       // const submittedData: BasicFormModel = this.basicForm.value;
-      // console.log('success Submit with: ', submittedData);
-      console.log('success submit with: ', this.basicTypedForm.value);
       this.psubmittedData = this.basicTypedForm.value;
-      this.onReset();
+      console.log('success submit with: ', this.psubmittedData);
+      this.onResetForm();
     } else {
       console.log('error submit with value: ', this.basicTypedForm.value);
       this.toastr.error('Please check again', 'Error');
@@ -97,6 +101,7 @@ export class BasicFormComponent implements OnInit {
     //   'basicTypedForm.controls.birthday: ',
     //   this.basicTypedForm.controls.birthday
     // );
+    // console.log(typeof this.basicTypedForm.controls.birthday)
   }
 
   onEnable() {
@@ -109,10 +114,18 @@ export class BasicFormComponent implements OnInit {
     this.basicTypedForm.disable();
   }
 
-  onReset() {
+  onResetForm() {
     // this.basicForm.reset();
     this.basicTypedForm.reset();
-    this.resultbmi = 0;
+  }
+
+  onResetAll() {
+    // this.basicForm.reset();
+    this.basicTypedForm.reset();
+    this.concateName = '';
+    this.age = 0;
+    this.bmi = 0;
+    this.resetAllData = true;
   }
 
   //compute bmi for untypedform done
@@ -126,14 +139,23 @@ export class BasicFormComponent implements OnInit {
   //   console.log('result bmi : ', this.resultbmi);
   // }
 
-  //compute bmi for typedform ==>  refer https://bobbyhadz.com/blog/typescript-left-hand-side-of-arithmetic-operation-must-be-type
-  computebmi() {
-    const weightVal = this.basicTypedForm.controls.weight.value;
-    const heightVal = this.basicTypedForm.controls.height.value;
-    console.log(weightVal, heightVal);
+  // //compute bmi for typedform ==>  refer https://bobbyhadz.com/blog/typescript-left-hand-side-of-arithmetic-operation-must-be-type
+  // computebmi() {
+  //   const weightVal = this.basicTypedForm.controls.weight.value;
+  //   const heightVal = this.basicTypedForm.controls.height.value;
+  //   console.log(weightVal, heightVal);
 
-    var bmi = Number(weightVal) / (Number(heightVal) * Number(heightVal));
-    this.resultbmi = Number(bmi.toFixed(3));
-    console.log('result bmi : ', this.resultbmi);
-  }
+  //   var bmi = Number(weightVal) / (Number(heightVal) * Number(heightVal));
+  //   this.resultbmi = Number(bmi.toFixed(3));
+  //   console.log('result bmi : ', this.resultbmi);
+  // }
+
+  // computeAge() {
+  //   const now = new Date();
+  //   const currentdate = new Date(this.basicTypedForm.controls.birthday.value);
+  //   // console.log('2', typeof this.basicTypedForm.controls.birthday.value);
+
+  //   const age = now.getFullYear() - currentdate.getFullYear();
+  //   // console.log(age);
+  // }
 }
