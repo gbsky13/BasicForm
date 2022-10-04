@@ -128,14 +128,14 @@ export class BasicFormComponent implements OnInit {
     this.resetAllData = true;
   }
 
-  //compute bmi for untypedform done
+  //compute bmi for untypedform
   // computebmi() {
   //
   //   const weightVal = this.basicForm.controls.weight.value;
   //   const heightVal = this.basicForm.controls.height.value;
 
-  //   var bmi = weightVal / (heightVal * heightVal);
-  //   this.resultbmi = Number(bmi.toFixed(3));
+  //   var rbmi = weightVal / (heightVal * heightVal);
+  //   this.resultbmi = Number(rbmi.toFixed(3));
   //   console.log('result bmi : ', this.resultbmi);
   // }
 
@@ -148,14 +148,5 @@ export class BasicFormComponent implements OnInit {
   //   var bmi = Number(weightVal) / (Number(heightVal) * Number(heightVal));
   //   this.resultbmi = Number(bmi.toFixed(3));
   //   console.log('result bmi : ', this.resultbmi);
-  // }
-
-  // computeAge() {
-  //   const now = new Date();
-  //   const currentdate = new Date(this.basicTypedForm.controls.birthday.value);
-  //   // console.log('2', typeof this.basicTypedForm.controls.birthday.value);
-
-  //   const age = now.getFullYear() - currentdate.getFullYear();
-  //   // console.log(age);
   // }
 }
