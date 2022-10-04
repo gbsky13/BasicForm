@@ -275,10 +275,10 @@
         *ngIf="psubmittedData"
         [csubmittedData]="psubmittedData"
         [resetAllData]="resetAllData"
-        (fromChildEmitter$)="concateName = $event"
-        (fromChildEmitter2$)="age = $event"
-        (fromChildEmitter3$)="bmi = $event"
-        (fromChildEmitter4$)="bmiStatus = $event"
+        (fromChildName$)="concateName = $event"
+        (fromChildAge$)="age = $event"
+        (fromChildBMI$)="bmi = $event"
+        (fromChildStatusBMI$)="bmiStatus = $event"
       >
         <!-- (fromChildEmitter$)="anyfuntion($event)"
       [] from parent to child

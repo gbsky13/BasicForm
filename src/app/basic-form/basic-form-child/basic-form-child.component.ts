@@ -17,10 +17,10 @@ import { BasicFormModel } from '../basicForm.model';
 export class BasicFormChildComponent implements OnInit, OnChanges {
   @Input() csubmittedData;
   @Input() resetAllData;
-  @Output() fromChildEmitter$ = new EventEmitter<String>(); //emitter=obsevable
-  @Output() fromChildEmitter2$ = new EventEmitter<Number>();
-  @Output() fromChildEmitter3$ = new EventEmitter<Number>();
-  @Output() fromChildEmitter4$ = new EventEmitter<String>();
+  @Output() fromChildName$ = new EventEmitter<String>(); //emitter=obsevable
+  @Output() fromChildAge$ = new EventEmitter<Number>();
+  @Output() fromChildBMI$ = new EventEmitter<Number>();
+  @Output() fromChildStatusBMI$ = new EventEmitter<String>();
 
   constructor() {}
   ngOnChanges(changes: SimpleChanges): void {
@@ -38,7 +38,7 @@ export class BasicFormChildComponent implements OnInit, OnChanges {
   concateName() {
     const newName =
       this.csubmittedData.firstName + ' ' + this.csubmittedData.lastName;
-    this.fromChildEmitter$.emit(newName);
+    this.fromChildName$.emit(newName);
   }
 
   computeAge() {
@@ -46,7 +46,7 @@ export class BasicFormChildComponent implements OnInit, OnChanges {
     const birthd = new Date(this.csubmittedData.birthday);
     // console.log(typeof this.basicTypedForm.controls.birthday.value);
     const age = currentdate.getFullYear() - birthd.getFullYear();
-    this.fromChildEmitter2$.emit(age);
+    this.fromChildAge$.emit(age);
   }
 
   //compute bmi for typedform ==>  refer https://bobbyhadz.com/blog/typescript-left-hand-side-of-arithmetic-operation-must-be-type
@@ -56,7 +56,7 @@ export class BasicFormChildComponent implements OnInit, OnChanges {
     console.log(weightVal, heightVal);
 
     var bmi = Number(weightVal) / (Number(heightVal) * Number(heightVal));
-    this.fromChildEmitter3$.emit(bmi);
+    this.fromChildBMI$.emit(bmi);
 
     let statusbmi = '';
     if (bmi < 0) {
@@ -71,6 +71,6 @@ export class BasicFormChildComponent implements OnInit, OnChanges {
       statusbmi = 'Obesity';
     }
 
-    this.fromChildEmitter4$.emit(statusbmi);
+    this.fromChildStatusBMI$.emit(statusbmi);
   }
 }
