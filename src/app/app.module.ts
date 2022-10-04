@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { BasicFormComponent } from './basic-form/basic-form.component';
+import { BasicFormChildComponent } from './basic-form/basic-form-child/basic-form-child.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -26,7 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
   ],
 
-  declarations: [AppComponent, BasicFormComponent],
+  declarations: [AppComponent, BasicFormComponent, BasicFormChildComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

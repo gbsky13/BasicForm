@@ -23,7 +23,9 @@
 
         <!-- Last Name -->
         <div class="row mb-2">
-          <label for="firstName" class="col-4 col-form-label">Last Name:</label>
+          <label for="firstName" class="col-4 col-form-label required"
+            >Last Name:</label
+          >
           <div class="col-8">
             <input
               type="text"
@@ -134,8 +136,8 @@
               class="form-control"
               formControlName="weight"
               placeholder="0"
-              (change)="computebmi()"
             />
+            <!-- (change)="computebmi()" -->
           </div>
         </div>
 
@@ -150,13 +152,13 @@
               class="form-control"
               formControlName="height"
               placeholder="0"
-              (change)="computebmi()"
             />
+            <!-- (change)="computebmi()" -->
           </div>
         </div>
 
-        <!-- BMI -->
-        <!-- <div class="row mb-2">
+        <!-- BMI 
+        <div class="row mb-2">
           <label for="resultbmi" class="col-4 col-form-label">BMI:</label>
           <div class="col-8 text-secondary">
             {{ resultbmi }}
@@ -239,17 +241,57 @@
             <button
               type="reset"
               class="btn btn-danger m-1 float-right"
-              (click)="onReset()"
+              (click)="onResetForm()"
             >
-              Reset
+              Reset Form
             </button>
           </div>
         </div>
       </form>
     </div>
     <!--end of card body-->
-    <div class="card-footer">Your BMI: {{ resultbmi }}<br /></div>
-    <!--end of card body-->
+    <div class="card-footer">
+      <div>
+        <h5>Summary:</h5>
+        <table>
+          <tbody>
+            <tr>
+              <th scope="row">Name:</th>
+              <td>{{ concateName }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Age:</th>
+              <td>{{ age }}</td>
+            </tr>
+            <tr>
+              <th scope="row">BMI:</th>
+              <td>{{ bmi }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <br />
+      <app-basic-form-child
+        *ngIf="psubmittedData"
+        [csubmittedData]="psubmittedData"
+        [resetAllData]="resetAllData"
+        (fromChildEmitter$)="concateName = $event"
+        (fromChildEmitter2$)="age = $event"
+        (fromChildEmitter3$)="bmi = $event"
+      >
+        <!-- (fromChildEmitter$)="anyfuntion($event)"
+      [] from parent to child
+      () from child to parent -->
+      </app-basic-form-child>
+      <button
+        type="button"
+        class="btn btn-danger m-1 float-right"
+        (click)="onResetAll()"
+      >
+        Reset All
+      </button>
+    </div>
+    <!--end of card footer-->
   </div>
   <!--end of card -->
 </div>
