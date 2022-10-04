@@ -33,6 +33,7 @@ export class BasicFormComponent implements OnInit {
   concateName?: String;
   age?: Number;
   bmi?: Number;
+  bmiStatus?: String;
 
   constructor(private fb: FormBuilder, private toastr: ToastrService) {}
 
@@ -125,6 +126,7 @@ export class BasicFormComponent implements OnInit {
     this.concateName = '';
     this.age = 0;
     this.bmi = 0;
+    this.bmiStatus = '';
     this.resetAllData = true;
   }
 

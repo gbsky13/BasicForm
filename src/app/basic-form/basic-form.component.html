@@ -265,7 +265,7 @@
             </tr>
             <tr>
               <th scope="row">BMI:</th>
-              <td>{{ bmi }}</td>
+              <td>{{ bmi }} ({{ bmiStatus }})</td>
             </tr>
           </tbody>
         </table>
@@ -275,9 +275,10 @@
         *ngIf="psubmittedData"
         [csubmittedData]="psubmittedData"
         [resetAllData]="resetAllData"
-        (fromChildEmitter$)="concateName = $event"
-        (fromChildEmitter2$)="age = $event"
-        (fromChildEmitter3$)="bmi = $event"
+        (fromChildName$)="concateName = $event"
+        (fromChildAge$)="age = $event"
+        (fromChildBMI$)="bmi = $event"
+        (fromChildStatusBMI$)="bmiStatus = $event"
       >
         <!-- (fromChildEmitter$)="anyfuntion($event)"
       [] from parent to child
