@@ -20,6 +20,7 @@ export class BasicFormChildComponent implements OnInit, OnChanges {
   @Output() fromChildEmitter$ = new EventEmitter<String>(); //emitter=obsevable
   @Output() fromChildEmitter2$ = new EventEmitter<Number>();
   @Output() fromChildEmitter3$ = new EventEmitter<Number>();
+  @Output() fromChildEmitter4$ = new EventEmitter<String>();
 
   constructor() {}
   ngOnChanges(changes: SimpleChanges): void {
@@ -56,5 +57,20 @@ export class BasicFormChildComponent implements OnInit, OnChanges {
 
     var bmi = Number(weightVal) / (Number(heightVal) * Number(heightVal));
     this.fromChildEmitter3$.emit(bmi);
+
+    let statusbmi = '';
+    if (bmi < 0) {
+      statusbmi = 'Not Normal Maybe You Alien';
+    } else if (bmi > 0 && bmi <= 18.5) {
+      statusbmi = 'Underweight';
+    } else if (bmi > 18.5 && bmi <= 24.9) {
+      statusbmi = 'Healthy';
+    } else if (bmi > 24.9 && bmi <= 29.9) {
+      statusbmi = 'Overweight';
+    } else {
+      statusbmi = 'Obesity';
+    }
+
+    this.fromChildEmitter4$.emit(statusbmi);
   }
 }

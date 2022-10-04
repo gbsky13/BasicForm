@@ -265,7 +265,7 @@
             </tr>
             <tr>
               <th scope="row">BMI:</th>
-              <td>{{ bmi }}</td>
+              <td>{{ bmi }} ({{ bmiStatus }})</td>
             </tr>
           </tbody>
         </table>
@@ -278,6 +278,7 @@
         (fromChildEmitter$)="concateName = $event"
         (fromChildEmitter2$)="age = $event"
         (fromChildEmitter3$)="bmi = $event"
+        (fromChildEmitter4$)="bmiStatus = $event"
       >
         <!-- (fromChildEmitter$)="anyfuntion($event)"
       [] from parent to child
